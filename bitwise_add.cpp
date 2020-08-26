@@ -1,6 +1,5 @@
-#include <iostream>
-#include <stdexcept>
 #include <stdint.h>
+#include <iostream>
 #include <limits>
 #include <stdexcept>
 #include "definitions.h"
@@ -18,18 +17,18 @@ int add(int a, int b) {
   uint8_t carry = 0;
 
   for (uint8_t i = 0; i < bitCount; i++) {
-    uint8_t addition = carry + ((a>>i) & 1) + ((b>>i) & 1);
+    uint8_t addition = carry + ((a >> i) & 1) + ((b >> i) & 1);
     carry = (addition & 0b10) >> 1;
     result |= ((addition & 1) << i);
   }
 
   // Overflow is not possible when first bit is different in arguments.
-  if ((a >> (bitCount-1)) != (b >> (bitCount-1))) {
+  if ((a >> (bitCount - 1)) != (b >> (bitCount - 1))) {
     return result;
   }
 
   // Overflow occurs when first bit is different in result and arguments.
-  if ((a >> (bitCount-1)) != (result  >> (bitCount-1))) {
+  if ((a >> (bitCount - 1)) != (result >> (bitCount - 1))) {
     throw std::overflow_error{"Addition overflow"};
   }
 
