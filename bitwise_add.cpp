@@ -22,7 +22,7 @@ int add(int a, int b) {
     result |= ((addition & 1) << i);
   }
 
-  // Overflow is not possible when first bit is different in arguments.
+  // Overflow is not possible when first bit differs in arguments.
   if ((a >> (bitCount - 1)) != (b >> (bitCount - 1))) {
     return result;
   }
